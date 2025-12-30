@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  api:
+    build:
+      context: ./insta-clone-api
+      dockerfile: Dockerfile
+    container_name: insta-clone-api-prod
+    ports:
+      - '8000:8000'
+    env_file:
+      - ./insta-clone-api/.env.production
+    volumes:
+      - ./insta-clone-api/app.db:/app/app.db
+      # ログを永続化する場合
+      - ./insta-clone-api/logs:/app/logs
+    restart: always
+    # リソース制限（オプション）
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 512M
+
+  front:
+    build:
+      context: ./insta-clone-front
+      dockerfile: Dockerfile
+      args:
+        - NUXT_PUBLIC_API_BASE=${NUXT_PUBLIC_API_BASE:-http://localhost:8000}
+    container_name: insta-clone-front-prod
+    ports:
+      - '3000:80'
+    env_file:
+      - ./insta-clone-front/.env.production
+    environment:
+      - NUXT_PUBLIC_API_BASE=${NUXT_PUBLIC_API_BASE:-http://localhost:8000}
+    depends_on:
+      - api
+    restart: always
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 256M
