@@ -1,75 +1,66 @@
-# Nuxt Minimal Starter
+# Jeligramy
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+## 概要
 
-## Setup
+Instagram 風の投稿アプリケーションです。画像とキャプションを投稿し、タイムラインで一覧表示できます。
 
-Make sure to install dependencies:
+## 機能
 
-```bash
-# npm
-npm install
+- **投稿一覧表示**: タイムラインで投稿を一覧表示
+- **新規投稿**: 画像とキャプションを投稿
 
-# pnpm
-pnpm install
+## 技術スタック
 
-# yarn
-yarn install
+- **Frontend**: Nuxt 4, Vue 3, Tailwind CSS, shadcn-nuxt
+- **Backend API**: FastAPI, SQLAlchemy
+- **Database**: SQLite
+- **Storage**: Supabase Storage
+- **Infrastructure**: Docker, Docker Compose
 
-# bun
-bun install
+## セットアップ
+
+### 前提条件
+
+- Docker と Docker Compose がインストールされていること
+- Supabase アカウント（画像ストレージ用）
+
+### 環境変数の設定
+
+`insta-clone-api/.env` ファイルを作成し、以下の環境変数を設定してください：
+
+```env
+SUPABASE_URL=your-supabase-url-here
+SUPABASE_ANON_KEY=your-supabase-anon-key-here
+SUPABASE_BUCKET=post-images
+ALLOWED_ORIGINS=http://localhost:3000
 ```
 
-## Development Server
-
-Start the development server on `http://localhost:3000`:
+### 起動方法
 
 ```bash
-# npm
-npm run dev
+# コンテナをビルドして起動
+docker compose up -d --build
 
-# pnpm
-pnpm dev
+# ログを確認
+docker compose logs -f
 
-# yarn
-yarn dev
-
-# bun
-bun run dev
+# 停止
+docker compose down
 ```
 
-## Production
+### アクセス
 
-Build the application for production:
+- **Frontend**: http://localhost:3000
+- **Backend API**: http://localhost:8000
+- **API ヘルスチェック**: http://localhost:8000/health
 
-```bash
-# npm
-npm run build
+## 今後の予定
 
-# pnpm
-pnpm build
+- ユーザー登録
+- ログイン機能
+- 削除・更新機能の追加
 
-# yarn
-yarn build
+---
 
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+※ 本プロジェクトは学習およびプロトタイプ開発を目的としています。
+※ フロントと API を分離することで、将来的な UI 変更や機能拡張に対応しやすい構成としています。
