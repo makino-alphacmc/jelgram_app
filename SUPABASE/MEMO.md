@@ -1,0 +1,7 @@
+### Supabase
+
+https://tojpnmylhfxualdxtuhl.supabase.co
+
+### anon key
+
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRvanBubXlsaGZ4dWFsZHh0dWhsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjY5MzA4MDUsImV4cCI6MjA4MjUwNjgwNX0.CQLOMe7jq2cqCr4KQbD9dV0JfzcAXX5dr-TudQIGbcA
