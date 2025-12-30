@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  api:
+    build:
+      context: ./insta-clone-api
+      dockerfile: Dockerfile
+    container_name: insta-clone-api
+    ports:
+      - '8000:8000'
+    env_file:
+      - ./insta-clone-api/.env
+    volumes:
+      # SQLite データベースを永続化
+      - ./insta-clone-api/app.db:/app/app.db
+    restart: unless-stopped
+
+  front:
+    build:
+      context: ./insta-clone-front
+      dockerfile: Dockerfile
+    container_name: insta-clone-front
+    ports:
+      - '3000:80'
+    environment:
+      # コンテナ間通信ではサービス名を使用
+      - NUXT_PUBLIC_API_BASE=http://api:8000
+    depends_on:
+      - api
+    restart: unless-stopped
