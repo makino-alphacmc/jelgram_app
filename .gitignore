@@ -1,0 +1,11 @@
+.DS_Store
+*.pyc
+__pycache__/
+.venv/
+venv/
+node_modules/
+.nuxt/
+.output/
+dist/
+insta-clone-api/app.db
+insta-clone-api/uploads/
